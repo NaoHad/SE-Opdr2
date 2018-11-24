@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,5 +43,43 @@ public class Producten {
 
     public void setShortkey(String shortkey) {
         this.shortkey = shortkey;
+    }
+
+    public double berekentotaalPrijs(int aantal){
+        double totprijs=0.0;
+        if(this.naam.equals("Robijn") && aantal > 2) {
+
+            totprijs = aantal * prijs * 0.7;
+            System.out.println("(aanbieding)" + naam + ":" + aantal + " voor " + totprijs + " euro");
+        }
+        else if(this.naam.equals("Kwark")){
+            LocalDate date = LocalDate.now();
+            //System.out.println(date.getDayOfWeek());
+            if(date.getDayOfWeek().name().equals("SATURDAY")){
+                //System.out.println("KWARKKKK KORTINGNNGNNGNG");
+                totprijs = aantal * prijs * 0.5;
+                System.out.println("(aanbieding)" + naam + ":" + aantal + " voor " + totprijs + " euro");
+            }
+            else{
+                totprijs = aantal * prijs;
+                System.out.println( naam + ":" + aantal + " voor " + totprijs + " euro");
+
+            }
+
+        }
+        else if(this.naam.equals("Luiers") && aantal > 3){
+            totprijs = aantal * prijs * 0.75;
+            System.out.println("(aanbieding)" + naam + ":" + aantal + " voor " + totprijs + " euro");
+
+
+
+        }
+        else{
+            totprijs = aantal * prijs;
+            System.out.println( naam + ":" + aantal + " voor " + totprijs + " euro");
+
+        }
+
+        return totprijs;
     }
 }
